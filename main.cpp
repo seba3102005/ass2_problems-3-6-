@@ -15,7 +15,7 @@ int main()
         string corrected_word;
         for(char c:word)
         {
-            if(isalpha(c))
+            if(isalnum(c))
             {
                 c=tolower(c);
                 corrected_word+=c;
@@ -25,7 +25,12 @@ int main()
                 corrected_word+=c;
             }
         }
-        cout<<corrected_word<<' ';
+        mp[corrected_word]++;
+
+    }
+    for (auto i : mp)
+    {
+        cout<<i.first<<" : "<<i.second<<endl;
     }
 
 }
