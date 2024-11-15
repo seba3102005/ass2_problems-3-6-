@@ -6,18 +6,22 @@ using namespace std;
 
 int main()
 {
-    string s = "file.txt";
     string file_name;
     cout<<"please enter the file's name: ";
     cin>>file_name;
 
     ifstream file(file_name );
-    if(!file)
+    while(!file.is_open())
     {
-        cout<<"error in opening the file"<<endl;
+        cout<<"Error in opening the file"<<endl;
+        cout<<"Please enter a correct file name: "<<endl;
+        cin>>file_name;
+
+        file.close();
+        file.open(file_name);
+
     }
-    else
-    {
+
         string word;
         map<string ,int>mp;
         while(file>>word)
@@ -38,11 +42,12 @@ int main()
             mp[corrected_word]++;
 
         }
-        for (auto i : mp)
+        cout<<"====Frequency Table====="<<endl;
+        for (auto word2 : mp)
         {
-            cout<<i.first<<" : "<<i.second<<endl;
+            cout<<word2.first<<" : "<<word2.second<<endl;
         }
-    }
+        file.close();
 
 
 }
